@@ -2,17 +2,16 @@ import pickle
 from flask import Flask
 from flask import request
 
-# from lin_alg import compute_dot, softmax, predict
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./client/build', static_url_path='/')
 
 # load pretrained model
 with open("./models/iris/softmax_reg.pkl", "rb") as f:
     model = pickle.load(f)
 
-@app.route('/api/value')
-def get_val():
-    return {'value': 'some value'}
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route('/api/predict/<val1>')
 @app.route('/api/predict/<val1>/<val2>')
