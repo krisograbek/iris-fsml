@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { makeStyles, Slider } from '@material-ui/core';
 import './App.css';
+import BarChart from './components/BarChart';
 
-const mapPredictions = {
+const mapIrisKeys = {
   0: "Iris Setosa",
   1: "Iris Versicolor",
   2: "Iris Virginica"
@@ -61,6 +62,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <BarChart probas={currentValue.probas} />
         <div className={classes.margin}></div>
         <div className={classes.vertical}>
           <Slider
@@ -97,12 +99,12 @@ function App() {
           currentValue.probas.map((val, i) => {
             return (
               <div key={i}>
-                {mapPredictions[i]}: {val.toFixed(3)}%
+                {mapIrisKeys[i]}: {val.toFixed(3)}%
               </div>
             )
           })
         }
-        <h2>Prediction: {mapPredictions[currentValue.prediction]}</h2>
+        <h2>Prediction: {mapIrisKeys[currentValue.prediction]}</h2>
         {/* <button onClick={updatePredictions}>update</button> */}
       </header>
     </div>
