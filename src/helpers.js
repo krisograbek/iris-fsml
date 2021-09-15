@@ -11,7 +11,7 @@ export const mapIrisShort = {
 };
 
 export const mapIrisColor = {
-  0: "yellow",
-  1: "green",
-  2: "blue"
+  0: "#fafab0",
+  1: "#9898ff",
+  2: "#a0faa0"
 };

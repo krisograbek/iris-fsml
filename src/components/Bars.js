@@ -25,7 +25,7 @@ function Bars(props) {
       {
         probas.map((proba, key) => {
           return (
-            <Grid item key={key} xs={2} sm={4}>
+            <Grid item key={key} xs={2}>
               <Grid
                 container
                 direction="column"
@@ -33,7 +33,7 @@ function Bars(props) {
                 spacing={1}
               >
                 <Grid item>
-                  <div className={classes.mediumFont}>{proba.toFixed(2)}%</div>
+                  <div className={classes.smallFont}>{proba.toFixed(1)}%</div>
                 </Grid>
                 <Grid item>
                   <Grid container spacing={0}
