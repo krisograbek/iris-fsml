@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     height: 100,
   },
   horizontal: {
-    width: 300,
-    padding: '12px'
+    width: 200,
+    padding: '20px 0 0 12px'
   },
 }));
 function Sliders(props) {
@@ -20,20 +20,27 @@ function Sliders(props) {
   }
 
   return (
-    <Grid>
-      <Grid item className={classes.vertical}>
-        <Slider
-          orientation="vertical"
-          valueLabelDisplay="on"
-          min={0.1}
-          max={4.0}
-          step={0.1}
-          value={width}
-          onChange={(e, val) => updateWidth(val)}
-          getAriaValueText={valuetext}
-          aria-labelledby="discrete-slider-custom"
-          valueLabelDisplay="auto"
-        />
+    <Grid
+      container
+      direction="column"
+    >
+      <Grid item >
+        <Grid container>
+          <Grid item className={classes.vertical}>
+            <Slider
+              orientation="vertical"
+              valueLabelDisplay="on"
+              min={0.1}
+              max={4.0}
+              step={0.1}
+              value={width}
+              onChange={(e, val) => updateWidth(val)}
+              getAriaValueText={valuetext}
+              aria-labelledby="discrete-slider-custom"
+              valueLabelDisplay="auto"
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item className={classes.horizontal}>
         <Slider

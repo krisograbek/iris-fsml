@@ -2,10 +2,11 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Grid, makeStyles, Slider } from '@material-ui/core';
 import Sliders from './Sliders';
+import TextPanel from './TextPanel';
 
 const mapIris = {
   0: "Iris Setosa",
-  1: "Iris Versicolor",
+  1: "Iris Versicolour",
   2: "Iris Virginica"
 }
 
@@ -33,10 +34,6 @@ function Panel() {
   const [length, setLength] = useState(2.1)
   const [width, setWidth] = useState(1.1)
 
-  function valuetext(value) {
-    return `${value}cm`;
-  }
-
   useEffect(() => {
     fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
       setCurrentValue(data)
@@ -60,7 +57,7 @@ function Panel() {
   }
   return (
     <Grid
-      containter
+      container
       direction="column"
       justifyContent="flex-start"
       alignItems="flex-start"
@@ -76,8 +73,10 @@ function Panel() {
         />
       </Grid>
       <Grid item>
-        <h6>Petal length: {length}</h6>
-        <h6>Petal width: {width}</h6>
+        <TextPanel
+          length={length}
+          width={width}
+        />
       </Grid>
       <Grid item>
         {
