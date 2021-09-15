@@ -5,5 +5,7 @@
 
 .App-header {
   font-size: calc(10px + 2vmin);
+  height: 99vh;
+  background-color: #282c34;
   color: white;
 }

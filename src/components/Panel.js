@@ -3,17 +3,12 @@ import { useEffect, useState } from 'react';
 import { Grid, makeStyles, Slider } from '@material-ui/core';
 import Sliders from './Sliders';
 import TextPanel from './TextPanel';
-
-const mapIris = {
-  0: "Iris Setosa",
-  1: "Iris Versicolour",
-  2: "Iris Virginica"
-}
+import Bars from './Bars';
+import { mapIris } from '../helpers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#282c34',
-    minHeight: '100vh',
+
     padding: '30px',
   },
   vertical: {
@@ -60,10 +55,16 @@ function Panel() {
       container
       direction="column"
       justifyContent="flex-start"
-      alignItems="flex-start"
+      alignItems="stretch"
       spacing={2}
       className={classes.root}
     >
+      <Grid item>
+        <Bars probas={currentValue.probas} />
+      </Grid>
+      <Grid item>
+        <h2>Prediction: {mapIris[currentValue.prediction]}</h2>
+      </Grid>
       <Grid item>
         <Sliders
           length={length}
@@ -71,26 +72,12 @@ function Panel() {
           updateLength={updateLength}
           updateWidth={updateWidth}
         />
-      </Grid>
-      <Grid item>
-        <TextPanel
-          length={length}
-          width={width}
-        />
-      </Grid>
-      <Grid item>
-        {
-          currentValue.probas.map((val, i) => {
-            return (
-              <div key={i}>
-                {mapIris[i]}: {val.toFixed(3)}%
-              </div>
-            )
-          })
-        }
-      </Grid>
-      <Grid item>
-        <h2>Prediction: {mapIris[currentValue.prediction]}</h2>
+        <Grid item>
+          <TextPanel
+            length={length}
+            width={width}
+          />
+        </Grid>
       </Grid>
     </Grid>
   )
