@@ -56,7 +56,7 @@ function Panel() {
       direction="column"
       justifyContent="flex-start"
       alignItems="stretch"
-      spacing={2}
+      spacing={3}
       className={classes.root}
     >
       <Grid item>
@@ -72,12 +72,12 @@ function Panel() {
           updateLength={updateLength}
           updateWidth={updateWidth}
         />
-        <Grid item>
-          <TextPanel
-            length={length}
-            width={width}
-          />
-        </Grid>
+      </Grid>
+      <Grid item>
+        <TextPanel
+          length={length}
+          width={width}
+        />
       </Grid>
     </Grid>
   )

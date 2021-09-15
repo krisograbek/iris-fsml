@@ -1,7 +1,7 @@
 import { Grid, makeStyles } from '@material-ui/core';
 import React from 'react'
 import { mapIrisColor, mapIrisShort } from '../helpers';
-
+import "../fonts.css";
 
 const useStyles = makeStyles((theme) => ({
   smallFont: {
@@ -33,7 +33,7 @@ function Bars(props) {
                 spacing={1}
               >
                 <Grid item>
-                  <div className={classes.smallFont}>{proba.toFixed(1)}%</div>
+                  <div className="mediumFont">{proba.toFixed(1)}%</div>
                 </Grid>
                 <Grid item>
                   <Grid container spacing={0}
@@ -52,7 +52,7 @@ function Bars(props) {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <div className={classes.smallFont}>{mapIrisShort[key]}</div>
+                  <div className="mediumFont">{mapIrisShort[key]}</div>
                 </Grid>
               </Grid>
             </Grid>

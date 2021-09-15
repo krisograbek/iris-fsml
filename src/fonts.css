@@ -1,0 +1,11 @@
+.smallFont {
+  font-size: calc(2px + 2vmin);
+}
+
+.mediumFont {
+  font-size: calc(6px + 2vmin);
+}
+
+.largeFont {
+  font-size: calc(10px + 2vmin);
+}
