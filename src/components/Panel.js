@@ -5,6 +5,7 @@ import Sliders from './Sliders';
 import TextPanel from './TextPanel';
 import Bars from './Bars';
 import { mapIris, mapIrisColor } from '../helpers';
+import "../fonts.css"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,6 +72,7 @@ function Panel() {
         </h2>
       </Grid>
       <Grid item>
+        {/* <div className="smallFont">Petal Width</div> */}
         <Sliders
           length={length}
           width={width}
@@ -78,12 +80,12 @@ function Panel() {
           updateWidth={updateWidth}
         />
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <TextPanel
           length={length}
           width={width}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }
