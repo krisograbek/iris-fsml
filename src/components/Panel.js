@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Grid, makeStyles, Slider } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import Sliders from './Sliders';
 import TextPanel from './TextPanel';
 import Bars from './Bars';
@@ -8,7 +8,6 @@ import { mapIris } from '../helpers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     padding: '30px',
   },
   vertical: {
@@ -56,7 +55,7 @@ function Panel() {
       direction="column"
       justifyContent="flex-start"
       alignItems="stretch"
-      spacing={2}
+      spacing={3}
       className={classes.root}
     >
       <Grid item>
@@ -72,12 +71,12 @@ function Panel() {
           updateLength={updateLength}
           updateWidth={updateWidth}
         />
-        <Grid item>
-          <TextPanel
-            length={length}
-            width={width}
-          />
-        </Grid>
+      </Grid>
+      <Grid item>
+        <TextPanel
+          length={length}
+          width={width}
+        />
       </Grid>
     </Grid>
   )
