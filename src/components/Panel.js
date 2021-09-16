@@ -4,7 +4,8 @@ import { Grid, makeStyles } from '@material-ui/core';
 import Sliders from './Sliders';
 import TextPanel from './TextPanel';
 import Bars from './Bars';
-import { mapIris } from '../helpers';
+import { mapIris, mapIrisColor } from '../helpers';
+import "../fonts.css"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,9 +63,16 @@ function Panel() {
         <Bars probas={currentValue.probas} />
       </Grid>
       <Grid item>
-        <h2>Prediction: {mapIris[currentValue.prediction]}</h2>
+        <h2>
+          Prediction: <span style={{
+            color: `${mapIrisColor[currentValue.prediction]}`
+          }}>
+            {mapIris[currentValue.prediction]}
+          </span>
+        </h2>
       </Grid>
       <Grid item>
+        {/* <div className="smallFont">Petal Width</div> */}
         <Sliders
           length={length}
           width={width}
@@ -72,12 +80,12 @@ function Panel() {
           updateWidth={updateWidth}
         />
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <TextPanel
           length={length}
           width={width}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }
