@@ -4,6 +4,17 @@ import { Grid, makeStyles, Slider } from '@material-ui/core'
 import iris_chart from "../images/boundaries.png"
 
 
+const minWid = 0.0;
+const maxWid = 3.5;
+const minLen = 0.0;
+const maxLen = 7.0;
+const sliderStep = 0.1;
+const imgWidth = 420;
+const imgHeight = 210;
+
+const factorWid = imgHeight / maxWid;
+const factorLen = imgWidth / maxLen;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     color: '#0000ff',
@@ -13,86 +24,28 @@ const useStyles = makeStyles((theme) => ({
     color: "#ccc"
   },
   vertical: {
-    height: 256,
+    height: imgHeight,
   },
   horizontal: {
-    width: 512,
-    // padding: '20px 0 0 12px'
+    width: imgWidth,
+    padding: '20px 0 0 0'
   },
   img: {
-    height: 256,
-    width: 512,
+    height: imgHeight,
+    width: imgWidth,
     // padding: ' 0 0 12px'
-
   },
-  canvasImg: {
-    height: 256,
-    width: 512,
-    backgroundImage: `url(${iris_chart})`
+  divImg: {
+    height: imgHeight,
+    width: imgWidth,
+    backgroundImage: `url(${iris_chart})`,
+    backgroundSize: `${imgWidth}px ${imgHeight}px`
   }
 }));
-
-const minWid = 0.0;
-const maxWid = 4.0;
-const minLen = 0.0;
-const maxLen = 8.0;
-const sliderStep = 0.1;
 
 function Sliders(props) {
   const { length, width, updateLength, updateWidth } = props;
   const classes = useStyles();
-  const canvas = useRef();
-  let ctx = null;
-
-  // draw a line
-  const drawLine = (info, style = {}) => {
-    const { x, y, x1, y1 } = info;
-    const { color = 'black', width = 1 } = style;
-
-    ctx = canvas.current.getContext("2d")
-
-    ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
-
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x1, y1);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = width;
-    ctx.stroke();
-  }
-  // initialize the canvas context
-  useEffect(() => {
-    // dynamically assign the width and height to canvas
-    const canvasEle = canvas.current;
-    canvasEle.width = canvasEle.clientWidth;
-    canvasEle.height = canvasEle.clientHeight;
-
-    // get context of the canvas
-    ctx = canvasEle.getContext("2d");
-  }, []);
-
-  useEffect(() => {
-    const factor = 64;
-    const posX = factor * length;
-    const posY = 256 - factor * width;
-    // const x = 
-    drawLine({ x: 0, y: posY, x1: 512, y1: posY }, { color: 'black', width: 1 });
-
-    drawLine({ x: posX, y: 0, x1: posX, y1: 256 }, { color: 'blue', width: 1 });
-  }, []);
-
-  const changeWidth = (val) => {
-    updateWidth(val);
-    const factor = 64;
-    const posY = 256 - factor * val;
-    drawLine({ x: 0, y: posY, x1: 512, y1: posY }, { color: 'black', width: 1 });
-  }
-  const changeLength = (val) => {
-    updateLength(val);
-    const factor = 64;
-    const posX = factor * val;
-    drawLine({ x: posX, y: 0, x1: posX, y1: 256 }, { color: 'blue', width: 1 });
-  }
 
   return (
     <Grid
@@ -101,9 +54,12 @@ function Sliders(props) {
       // spacing={3}
       direction="column"
     >
-      <Grid item>
+      <Grid item
+        className={classes.vertical}
+      >
         <Grid container>
-          <Grid item className={classes.vertical} xs={2}>
+          <Grid item xs={1}
+          >
             <Slider
               orientation="vertical"
               valueLabelDisplay="on"
@@ -112,24 +68,32 @@ function Sliders(props) {
               step={sliderStep}
               value={width}
               // marks={range(minWid, maxWid, 1)}
-              onChange={(e, val) => changeWidth(val)}
+              onChange={(e, val) => updateWidth(val)}
               // getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
             />
           </Grid>
           <Grid item>
-            <canvas ref={canvas} id="imgCanvas" className={classes.canvasImg}>
-              {/* <img
-                src={iris_chart}
-                className={classes.img}
-              /> */}
-            </canvas>
+            <div className={classes.divImg}>
+              <div style={{
+                position: "absolute",
+                borderLeft: "2px solid black",
+                height: `${imgHeight}px`,
+                marginLeft: `${length * factorLen}px`
+              }} ></div>
+              <div style={{
+                position: "absolute",
+                borderTop: "2px solid black",
+                width: `${imgWidth}px`,
+                marginTop: `${imgHeight - width * factorWid}px`
+              }} ></div>
+            </div>
           </Grid>
         </Grid>
       </Grid>
       <Grid item>
         <Grid container>
-          <Grid item xs={2}><div></div></Grid>
+          <Grid item xs={1}><div></div></Grid>
           <Grid item className={classes.horizontal}>
             <Slider
               min={minLen}
@@ -137,14 +101,12 @@ function Sliders(props) {
               step={sliderStep}
               value={length}
               // marks={range(minLen, maxLen, 2)}
-              onChange={(e, val) => changeLength(val)}
+              onChange={(e, val) => updateLength(val)}
               // getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="on"
             // marks={marks}
             />
-            {/* <Typography>Petal length</Typography> */}
-            {/* <button onClick={() => console.log(marksLength)}>Show</button> */}
           </Grid>
         </Grid>
       </Grid>
