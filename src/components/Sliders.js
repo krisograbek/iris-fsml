@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import { Grid, makeStyles, Slider, Typography } from '@material-ui/core'
-import "../fonts.css"
-import iris_chart from "../images/boundaries.png"
-
+import { Grid, makeStyles, Slider } from '@material-ui/core';
+import React from 'react';
+import "../fonts.css";
+import { range } from '../helpers';
+import iris_chart from "../images/boundaries.png";
 
 const minWid = 0.0;
 const maxWid = 3.5;
@@ -15,12 +15,8 @@ const imgHeight = 210;
 const factorWid = imgHeight / maxWid;
 const factorLen = imgWidth / maxLen;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    color: '#ccc',
-  },
+const useStyles = makeStyles(() => ({
   markLabel: {
-    // background: "black",
     color: "#ccc"
   },
   vertical: {
@@ -32,10 +28,6 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: imgHeight,
     width: imgWidth,
-    // padding: ' 0 0 12px'
-  },
-  padding20: {
-    padding: '20px 0 0 0'
   },
   divImg: {
     height: imgHeight,
@@ -48,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "middle"
   },
   rotate: {
-    // transform: "rotate(-90deg)",
     writingMode: "vertical-rl"
   }
 }));
@@ -57,31 +48,11 @@ function Sliders(props) {
   const { length, width, updateLength, updateWidth } = props;
   const classes = useStyles();
 
-  const range = (start, stop, step = 1) =>
-    Array(Math.ceil((stop - start) / step))
-      .fill(start).map((x, y) => {
-        const val = x + y * step
-        return (
-          { value: val, label: `${val}` }
-        )
-      })
-
   return (
     <Grid
       container
-      className={classes.root}
       direction="column"
     >
-      {/* <Grid item>
-        <Grid container>
-          <Grid item xs={2}>
-            <div className="smallFont">Width [cm]</div>
-          </Grid>
-          <Grid item >
-            <div />
-          </Grid>
-        </Grid>
-      </Grid> */}
       <Grid item className={classes.vertical}>
         <Grid container>
           <Grid item xs={2}>
@@ -134,7 +105,6 @@ function Sliders(props) {
       <Grid item>
         <Grid container>
           <Grid item xs={2}><div /></Grid>
-          {/* <Grid item className={`${classes.horizontal} ${classes.padding20}`}> */}
           <Grid item style={{
             width: "420px",
             paddingTop: "20px"

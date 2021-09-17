@@ -15,3 +15,12 @@ export const mapIrisColor = {
   1: "#9898ff",
   2: "#a0faa0"
 };
+
+export const range = (start, stop, step = 1) =>
+  Array(Math.ceil((stop - start) / step))
+    .fill(start).map((x, y) => {
+      const val = x + y * step
+      return (
+        { value: val, label: `${val}` }
+      )
+    })

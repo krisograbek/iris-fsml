@@ -1,20 +1,10 @@
 import { Grid, makeStyles } from '@material-ui/core';
-import React from 'react'
-import { mapIrisColor, mapIrisShort } from '../helpers';
+import React from 'react';
 import "../fonts.css";
-
-const useStyles = makeStyles((theme) => ({
-  smallFont: {
-    fontSize: 'calc(6px + 2vmin)'
-  },
-  mediumFont: {
-    fontSize: 'calc(8px + 2vmin)'
-  }
-}));
+import { mapIrisColor, mapIrisShort } from '../helpers';
 
 function Bars(props) {
   const { probas } = props;
-  const classes = useStyles();
 
   return (
     <Grid
@@ -42,12 +32,12 @@ function Bars(props) {
                   >
                     <div style={{
                       borderLeft: "20px solid grey",
-                      height: 100 - proba + "px"
+                      height: `${100 - proba}px`
                     }} ></div>
                     <div style={{
                       borderLeft: "20px solid",
                       borderColor: mapIrisColor[key],
-                      height: proba + "px"
+                      height: `${proba}px`
                     }} ></div>
                   </Grid>
                 </Grid>
