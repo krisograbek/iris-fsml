@@ -33,7 +33,7 @@ function Panel() {
     fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
       setCurrentValue(data)
     })
-  }, [])
+  }, [length, width])
 
   const updatePredictions = () => {
     fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
@@ -43,12 +43,12 @@ function Panel() {
 
   const updateLength = (val) => {
     setLength(val);
-    updatePredictions();
+    // updatePredictions();
   }
 
   const updateWidth = (val) => {
     setWidth(val);
-    updatePredictions();
+    // updatePredictions();
   }
   return (
     <Grid
@@ -76,8 +76,8 @@ function Panel() {
         <Sliders
           length={length}
           width={width}
-          updateLength={updateLength}
-          updateWidth={updateWidth}
+          updateLength={setLength}
+          updateWidth={setWidth}
         />
       </Grid>
       {/* <Grid item>
