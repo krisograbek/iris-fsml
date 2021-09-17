@@ -1,23 +1,14 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
-import Sliders from './Sliders';
-import TextPanel from './TextPanel';
-import Bars from './Bars';
+import React, { useEffect, useState } from 'react';
+import "../fonts.css";
 import { mapIris, mapIrisColor } from '../helpers';
-import "../fonts.css"
+import Bars from './Bars';
+import Sliders from './Sliders';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     padding: '30px',
-  },
-  vertical: {
-    height: 100,
-  },
-  horizontal: {
-    width: 300,
-    padding: '12px'
-  },
+  }
 }));
 
 function Panel() {
@@ -26,8 +17,9 @@ function Panel() {
     "dot": [],
     "probas": []
   })
-  const [length, setLength] = useState(2.1)
-  const [width, setWidth] = useState(1.1)
+  // create states with default values
+  const [length, setLength] = useState(2.8)
+  const [width, setWidth] = useState(2.8)
 
   useEffect(() => {
     fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
@@ -35,21 +27,6 @@ function Panel() {
     })
   }, [length, width])
 
-  const updatePredictions = () => {
-    fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
-      setCurrentValue(data)
-    })
-  }
-
-  const updateLength = (val) => {
-    setLength(val);
-    // updatePredictions();
-  }
-
-  const updateWidth = (val) => {
-    setWidth(val);
-    // updatePredictions();
-  }
   return (
     <Grid
       container
@@ -72,7 +49,6 @@ function Panel() {
         </h2>
       </Grid>
       <Grid item>
-        {/* <div className="smallFont">Petal Width</div> */}
         <Sliders
           length={length}
           width={width}
@@ -80,12 +56,6 @@ function Panel() {
           updateWidth={setWidth}
         />
       </Grid>
-      {/* <Grid item>
-        <TextPanel
-          length={length}
-          width={width}
-        />
-      </Grid> */}
     </Grid>
   )
 }
