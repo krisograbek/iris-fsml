@@ -33,7 +33,7 @@ function Panel() {
     fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
       setCurrentValue(data)
     })
-  }, [])
+  }, [length, width])
 
   const updatePredictions = () => {
     fetch(`/api/predict/${length}/${width}`).then(res => res.json()).then(data => {
