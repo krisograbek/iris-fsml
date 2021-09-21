@@ -1,6 +1,14 @@
-## Description
+# Description
 
-This is a template repository to build React-Flask applications. The code is based on [this tutorial](https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project) by Miguel Grinberg
+This is my first Full Stack Machine Learning Projects. You can play with the App directly on [Heroku](https://iris-flask-react.herokuapp.com/)
+
+## Sources
+
+This repository is bootstraped from [this template](https://github.com/krisograbek/react-flask-template). The template itself is based on [this tutorial](https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project) by Miguel Grinberg and Create React App.
+
+The Machine Learning model was trained using the parameters from the "Hands-on Machine Learning" book by Aurelion Geron. The code is [here](https://github.com/ageron/handson-ml2/blob/master/04_training_linear_models.ipynb) - cell 63. 
+
+# Running the project
 
 ## Preparing a Flask API Backend
 
@@ -46,19 +54,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-## Other Frontend Scripts
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
